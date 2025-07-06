@@ -1,0 +1,22 @@
+.hidden {
+    display: none;  
+    transition: opacity 1s ease-in-out;
+}
+
+.shown {
+    display: block;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}   
+
+.title {
+    font-family: 'Barbieri Light';
+}
+
+.main {
+    background-color: #aad0f7;
+}
+
+.logo {
+    width: 50px;
+}
