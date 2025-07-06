@@ -8,7 +8,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState()
 
   if (!currentPage) {
-    return (<Switcher currentPage={currentPage} setCurrentPage={setCurrentPage} />)
+    return (<><Switcher currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <p>[Cd] Cadmium, a tool made by shiftleft (eosis)</p></>)
   }
   return (
     <>
