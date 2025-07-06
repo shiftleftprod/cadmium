@@ -15,7 +15,6 @@ let gameState = {
   teams: {},
 };
 
-// Clients connectés
 const clients = {
   displays: new Set(),
   remotes: new Set(),
@@ -46,7 +45,6 @@ wss.on("connection", (ws) => {
     const message = JSON.parse(data.toString());
     console.log("Message reçu:", message);
 
-    // Ici tu gères les différents types de messages
     console.log(message.type === "PING");
     switch (message.type) {
       case "REGISTER":

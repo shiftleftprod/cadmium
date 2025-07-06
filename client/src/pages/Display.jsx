@@ -3,7 +3,6 @@ import { useDisplayWebSocket } from '../hooks/useWebsocket';
 import styles from './Display.module.css';
 import logo from '../../public/logo.png';
 
-// Composant Display - Super propre !
 export default function DisplayComponent() {
     const { isConnected, lastMessage } = useDisplayWebSocket();
     const [ping, setPing] = useState(false);

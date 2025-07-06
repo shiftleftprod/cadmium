@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRemoteWebSocket } from '../hooks/useWebsocket';
+import styles from './Remote.module.css';
 
-// Composant Remote - Super propre aussi !
 export default function RemoteComponent() {
     const { isConnected, lastMessage, sendMessage } = useRemoteWebSocket();
     const [gameState, setGameState] = useState({});
@@ -59,8 +59,8 @@ export default function RemoteComponent() {
             <p>Current Question : {gameState.question}</p>
             <p>Current Answers :</p>
             {gameState.answers && Object.entries(gameState.answers).map(([key, value]) => (
-                <div key={key}>
-                    <p>Answer {key}: {value.text} - Votes: {value.votes}</p>
+                <div className={styles.answer} key={key}>
+                    <p>{key}: {value.text} - Votes: {value.votes}</p>
                     <button onClick={() => handleReveal(value.id)} >Reveal</button>
                 </div>
             ))}
