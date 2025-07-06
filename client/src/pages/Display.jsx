@@ -35,6 +35,14 @@ export default function DisplayComponent() {
             <div className={styles.logo}>
                 <img src={logo} alt="" />
             </div>
+            <div className={styles.background}>
+                <p>FLAMIN'GOAT #9</p>
+                <p>UNE COMMU EN OR</p>
+                <p>FLAMIN'GOAT #9</p>
+                <p>UNE COMMU EN OR</p>
+                <p>FLAMIN'GOAT #9</p>
+                <p>UNE COMMU EN OR</p>
+            </div>
             {ping && <p>Pong !</p>}
             <p>Status : {isConnected ? 'connected' : 'disconnected'}</p>
             <div className={styles.title}>
@@ -46,6 +54,9 @@ export default function DisplayComponent() {
                         <p> {key} </p><p> {revealedAnswers.includes(value.id) ? value.text : '. . . . . . . . . . .'} </p><p> {revealedAnswers.includes(value.id) ? value.votes : ' '} </p>
                     </div>
                 ))}
+            </div>
+            <div className={styles.xd}>
+
             </div>
         </div>
     );
