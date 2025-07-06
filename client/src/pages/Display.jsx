@@ -33,18 +33,21 @@ export default function DisplayComponent() {
 
     return (
         <div className={styles.main}>
-            <div className={styles.header}>
-                <img className={styles.logo} src={logo} alt="" />
+            <div className={styles.logo}>
+                <img src={logo} alt="" />
             </div>
             {ping && <p>Pong !</p>}
             <p>Status : {isConnected ? 'connected' : 'disconnected'}</p>
-            <p className={styles.title}>Current Question: {gameState.question}</p>
-            <p>Current Answers:</p>
-            {gameState.answers && Object.entries(gameState.answers).map(([key, value]) => (
-                <div key={key}>
-                    <p> Answer {key}: </p><p className={revealedAnswers.includes(value.id) ? styles.shown : styles.hidden}> {value.text} - Votes: {value.votes}</p>
-                </div>
-            ))}
+            <div className={styles.title}>
+                <p>{gameState.question}</p>
+            </div>
+            <div className={styles.answers}>
+                {gameState.answers && Object.entries(gameState.answers).map(([key, value]) => (
+                    <div key={key} className={styles.answer}>
+                        <p> {key} </p><p> {revealedAnswers.includes(value.id) ? value.text : '. . . . . . . . . . .'} </p><p> {revealedAnswers.includes(value.id) ? value.votes : ' '} </p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

@@ -10,13 +10,47 @@
 }   
 
 .title {
-    font-family: 'Barbieri Light';
+    font-family: 'Barbieri Regular';
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+
 }
 
 .main {
-    background-color: #aad0f7;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .logo {
     width: 50px;
+    display: none; /* flex */
+    align-items: center;
+    justify-content: center;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer{
+    font-family: Barbieri Light;
+    width: 80%;
+    max-width: 500px;
+    height: 50px;
+    background-color: #ffffff;
+    color:#000000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 30px;
+    border: 4px dashed #ff8faf;
+    padding: 0 20px;
 }
