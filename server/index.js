@@ -21,7 +21,6 @@ const clients = {
 };
 
 function sendToDisplays(message) {
-  console.log("fhjkg");
   clients.displays.forEach((ws) => {
     ws.send(JSON.stringify(message));
   });
@@ -45,7 +44,6 @@ wss.on("connection", (ws) => {
     const message = JSON.parse(data.toString());
     console.log("Message reçu:", message);
 
-    console.log(message.type === "PING");
     switch (message.type) {
       case "REGISTER":
         console.log(message.clientType + " connected");
@@ -62,7 +60,7 @@ wss.on("connection", (ws) => {
         });
         break;
       case "START_GAME":
-        console.log("game started !");
+        console.log("START GAME");
         gameState.currentQuestion = gameData.questions[0];
         console.log(gameState.currentQuestion);
         sendToAll({
