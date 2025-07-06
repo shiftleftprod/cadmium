@@ -48,20 +48,20 @@ export default function RemoteComponent() {
 
     return (
         <div>
-            <p>Status : {isConnected ? 'connected' : 'disconnected'}</p>
+            <p>Status : {isConnected ? 'connected' : 'disconnected'} ({`ws://${window.location.hostname}:8080`})</p>
             <button onClick={() => handlePrintState()}>[DEBUG] Print state</button>
             <button onClick={() => sendMessage({ type: 'PING', data: {} })}>[DEBUG] Send Ping</button>
-            <div>
-                {!startWarning && <button onClick={() => setStartWarning(true)}>Start game</button>}
-                {startWarning && <button disabled={startDisabled} onClick={() => handleStartGame()}>{startDisabled ? 'Sure ? (Wait 4s)' : 'Confirm'}</button>}
+            <div className={styles.start}>
+                {!startWarning && <button onClick={() => setStartWarning(true)}>Démarrer la partie</button>}
+                {startWarning && <button disabled={startDisabled} onClick={() => handleStartGame()}>{startDisabled ? 'Sur.e ? (4s)' : 'Démarrer'}</button>}
             </div>
-            <button onClick={() => sendMessage({ type: 'NEXT_QUESTION', data: {} })}>Next Question</button>
-            <p>Current Question : {gameState.question}</p>
-            <p>Current Answers :</p>
+            <button onClick={() => sendMessage({ type: 'NEXT_QUESTION', data: {} })}>Question suivante</button>
+            <p>Question : {gameState.question}</p>
+            <p>Réponses :</p>
             {gameState.answers && Object.entries(gameState.answers).map(([key, value]) => (
                 <div className={styles.answer} key={key}>
                     <p>{key}: {value.text} - Votes: {value.votes}</p>
-                    <button onClick={() => handleReveal(value.id)} >Reveal</button>
+                    <button onClick={() => handleReveal(value.id)} >Révéler</button>
                 </div>
             ))}
         </div>
