@@ -1,0 +1,82 @@
+.hidden {
+    z-index: 3;
+    display: none;  
+    transition: opacity 1s ease-in-out;
+}
+
+.shown {
+    z-index: 3;
+    display: block;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}   
+
+.title {
+    position:relative;
+    z-index: 3;
+    font-family: 'Barbieri Regular';
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+
+}
+
+.main {
+    background-color: #000000;
+    color: #fefefe;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+
+.main::-webkit-scrollbar {
+    display: none;  /* Older Safari and Chromium */
+}
+
+.logo {
+    z-index: 3;
+    width: 50px;
+    display: none; /* flex */
+    align-items: center;
+    justify-content: center;
+}
+
+.answers {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer{
+    z-index: 3;
+    font-family: Barbieri Light;
+    width: 80%;
+    max-width: 500px;
+    height: 50px;
+    background-color: #fefefe;
+    color:#010101;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 30px;
+    border: 4px dashed #ff8faf;
+    padding: 0 20px;
+}
+
+.background{
+    color: #090909;
+    font-family: Barbieri Bold;
+    position: absolute;
+    font-size: 190px;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.xd {
+    height: 10000px;
+}

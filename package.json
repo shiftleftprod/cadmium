@@ -1,0 +1,23 @@
+{
+  "name": "cadmium",
+  "version": "1.0.0",
+  "description": "game service",
+  "main": "index.js",
+"scripts": {
+    "dev": "concurrently --names \"CLIENT,SERVER\" --prefix-colors \"blue,green\" \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "dev:kill": "concurrently --kill-others --names \"CLIENT,SERVER\" --prefix-colors \"blue,green\" \"npm run dev --prefix client\" \"npm run dev --prefix server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiftleftprod/cadmium.git"
+  },
+  "author": "shiftleft, eosis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiftleftprod/cadmium/issues"
+  },
+  "homepage": "https://github.com/shiftleftprod/cadmium#readme",
+  "dependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
