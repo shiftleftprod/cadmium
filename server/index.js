@@ -1,12 +1,18 @@
-const WebSocket = require("ws");
-const express = require("express");
-const app = express();
-const server = require("http").createServer(app);
-const wss = new WebSocket.Server({ server });
+import { WebSocketServer } from "ws";
+import express from "express";
+import { createServer } from "http";
 
-// État du jeu (à toi de définir la structure)
+const app = express();
+const server = createServer(app);
+const wss = new WebSocketServer({ server });
+
+import gameData from "./gameData.js";
+
 let gameState = {
-  // Ton état ici
+  currentQuestion: {},
+  revealedAnswers: [],
+  maxQuestions: gameData.questions.length,
+  teams: {},
 };
 
 // Clients connectés
@@ -16,7 +22,7 @@ const clients = {
 };
 
 function sendToDisplays(message) {
-  console.log(clients.displays);
+  console.log("fhjkg");
   clients.displays.forEach((ws) => {
     ws.send(JSON.stringify(message));
   });
@@ -26,6 +32,11 @@ function sendToRemotes(message) {
   clients.remotes.forEach((ws) => {
     ws.send(JSON.stringify(message));
   });
+}
+
+function sendToAll(message) {
+  sendToDisplays(message);
+  sendToRemotes(message);
 }
 
 wss.on("connection", (ws) => {
@@ -49,8 +60,38 @@ wss.on("connection", (ws) => {
       case "PING":
         sendToDisplays({
           type: "PING",
-          data: "Ping !",
+          data: {},
         });
+        break;
+      case "START_GAME":
+        console.log("game started !");
+        gameState.currentQuestion = gameData.questions[0];
+        console.log(gameState.currentQuestion);
+        sendToAll({
+          type: "UPDATE_QUESTION",
+          data: gameState.currentQuestion,
+        });
+
+        break;
+      case "NEXT_QUESTION":
+        console.log("NEXT QUESTION");
+        gameState.currentQuestion =
+          gameData.questions[
+            gameData.questions.indexOf(gameState.currentQuestion) + 1
+          ];
+        console.log(gameState.currentQuestion);
+        sendToAll({
+          type: "UPDATE_QUESTION",
+          data: gameState.currentQuestion,
+        });
+        break;
+      case "REVEAL_ANSWER":
+        sendToDisplays({
+          type: "REVEAL_ANSWER",
+          data: message.data,
+        });
+        console.log("REVEAL ANSWER");
+        break;
 
       default:
         console.log("Message non géré:", message);
