@@ -1,68 +1,82 @@
 import { useState, useEffect, useRef } from 'react';
 
-export const useWebSocket = (clientType) => {
-    const [connected, setConnected] = useState(false);
-    const [gameState, setGameState] = useState({});
-    const ws = useRef(null);
+// Hook de base générique
+const useWebSocketBase = (url, clientType) => {
+    const [socket, setSocket] = useState(null);
+    const [isConnected, setIsConnected] = useState(false);
+    const [lastMessage, setLastMessage] = useState(null);
+    const socketRef = useRef(null);
 
     useEffect(() => {
-        if (ws.current) {
-            ws.current.close()
-        }
-        const wsUrl = `ws://${window.location.hostname}:8080`;
-        ws.current = new WebSocket(wsUrl);
+        const ws = new WebSocket(url);
+        socketRef.current = ws;
+        setSocket(ws);
 
-        ws.current.onopen = () => {
-            console.log('Connecté au serveur WebSocket');
-            setConnected(true);
+        ws.onopen = () => {
+            console.log(`WebSocket connecté (${clientType})`);
+            setIsConnected(true);
 
             // S'enregistrer auprès du serveur
-            ws.current.send(JSON.stringify({
+            ws.send(JSON.stringify({
                 type: 'REGISTER',
                 clientType: clientType
             }));
         };
 
-        ws.current.onmessage = (event) => {
+        ws.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            console.log('Message reçu:', message);
-
-            // Ici tu gères les messages reçus du serveur
-            switch (message.type) {
-                case 'TEST':
-                    console.log('Message de test reçu:', message.data);
-                    break;
-                case 'PING':
-                    console.log('Ping reçu, envoi de PONG');
-                    break;
-
-                default:
-                    console.log('Message non-reconnu:', message);
-            }
+            setLastMessage(message);
         };
 
-        ws.current.onclose = () => {
-            console.log('Connexion fermée');
-            setConnected(false);
+        ws.onclose = () => {
+            console.log(`WebSocket déconnecté (${clientType})`);
+            setIsConnected(false);
+        };
+
+        ws.onerror = (error) => {
+            console.error(`Erreur WebSocket (${clientType}):`, error);
         };
 
         return () => {
-            if (ws.current) {
-                ws.current.close();
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.close();
             }
         };
-    }, [clientType]);
+    }, [url, clientType]);
 
     const sendMessage = (message) => {
-        console.log('Sending message:', message);
-        if (ws.current && ws.current.readyState === WebSocket.OPEN) {
-            ws.current.send(JSON.stringify(message));
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(message));
         }
     };
 
     return {
-        connected,
-        gameState,
-        sendMessage
+        socket,
+        isConnected,
+        lastMessage,
+        sendMessage,
+        clientType
+    };
+};
+
+// Hook spécifique pour les DISPLAYS
+export const useDisplayWebSocket = (url = `ws://${window.location.hostname}:8080`) => {
+    const { isConnected, lastMessage, sendMessage } = useWebSocketBase(url, 'display');
+
+    return {
+        isConnected,
+        lastMessage,
+        sendMessage,
+    };
+};
+
+// Hook spécifique pour les REMOTES
+export const useRemoteWebSocket = (url = `ws://${window.location.hostname}:8080`) => {
+    const { isConnected, lastMessage, sendMessage } = useWebSocketBase(url, 'remote');
+
+    return {
+        isConnected,
+        lastMessage,
+        sendMessage,
     };
 };
