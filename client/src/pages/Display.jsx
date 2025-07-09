@@ -20,6 +20,7 @@ export default function DisplayComponent() {
                     break;
                 case 'UPDATE_QUESTION':
                     setGameState(lastMessage.data);
+                    setRevealedAnswers([]);
                     break;
                 case 'REVEAL_ANSWER':
                     setRevealedAnswers(prev => [...prev, lastMessage.data.answerId]);
