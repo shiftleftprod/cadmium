@@ -69,14 +69,35 @@
 }
 
 .background{
-    color: #090909;
+    color: #131313;
+    opacity: 0.65;
     font-family: Barbieri Bold;
     position: absolute;
     font-size: 190px;
     white-space: nowrap;
     z-index: 1;
+    animation-name: stretch;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 .xd {
     height: 10000px;
+}
+
+
+@keyframes stretch {
+    0% {
+        transform: scaleX(1);
+        letter-spacing: normal;
+    }
+    50% {
+        transform: scaleX(1.05);
+        letter-spacing: 3px;
+    }
+    100% {
+        transform: scaleX(1);
+        letter-spacing: normal;
+    }
 }
