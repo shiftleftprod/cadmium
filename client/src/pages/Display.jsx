@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDisplayWebSocket } from '../hooks/useWebsocket';
 import styles from './Display.module.css';
 import logo from '../../public/logo.png';
+import useSound from 'use-sound';
+import pointSfx from '../assets/point.mp3'
 
 export default function DisplayComponent() {
     const { isConnected, lastMessage } = useDisplayWebSocket();
     const [ping, setPing] = useState(false);
     const [gameState, setGameState] = useState({})
     const [revealedAnswers, setRevealedAnswers] = useState([]);
+    const [play] = useSound(pointSfx, { volume: 0.3 });
+
 
     useEffect(() => {
         if (lastMessage) {
@@ -24,6 +28,7 @@ export default function DisplayComponent() {
                     break;
                 case 'REVEAL_ANSWER':
                     setRevealedAnswers(prev => [...prev, lastMessage.data.answerId]);
+                    play()
                     break;
 
 
