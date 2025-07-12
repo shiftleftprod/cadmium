@@ -71,6 +71,13 @@ wss.on("connection", (ws) => {
         break;
       case "NEXT_QUESTION":
         console.log("NEXT QUESTION");
+        if (
+          gameData.questions.indexOf(gameState.currentQuestion) + 1 >=
+          gameData.questions.length
+        ) {
+          console.log("No more questions available.");
+          break;
+        }
         gameState.currentQuestion =
           gameData.questions[
             gameData.questions.indexOf(gameState.currentQuestion) + 1
@@ -105,3 +112,4 @@ const PORT = process.env.PORT || 8080;
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });
+

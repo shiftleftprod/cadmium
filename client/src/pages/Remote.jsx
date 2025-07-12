@@ -56,7 +56,7 @@ export default function RemoteComponent() {
                 {startWarning && <button disabled={startDisabled} onClick={() => handleStartGame()}>{startDisabled ? 'Sur.e ? (4s)' : 'Démarrer'}</button>}
             </div>
             <button onClick={() => sendMessage({ type: 'NEXT_QUESTION', data: {} })}>Question suivante</button>
-            <p>Question : {gameState.question}</p>
+            <p>Question {gameState.id}: {gameState.question}</p>
             <p>Réponses :</p>
             {gameState.answers && Object.entries(gameState.answers).map(([key, value]) => (
                 <div className={styles.answer} key={key}>
