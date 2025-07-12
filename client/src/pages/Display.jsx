@@ -11,6 +11,10 @@ export default function DisplayComponent() {
     const [gameState, setGameState] = useState({})
     const [revealedAnswers, setRevealedAnswers] = useState([]);
     const [play] = useSound(pointSfx, { volume: 0.3 });
+    const [scoreState, setScoreSate] = useState({
+        TLS: 0,
+        SAL: 0
+    });
 
 
     useEffect(() => {
@@ -29,6 +33,10 @@ export default function DisplayComponent() {
                 case 'REVEAL_ANSWER':
                     setRevealedAnswers(prev => [...prev, lastMessage.data.answerId]);
                     play()
+                    break;
+                case 'DISPLAY_SCORES':
+                    setScoreSate(lastMessage.data);
+                    console.log('Scores mis à jour:', lastMessage.data);
                     break;
 
 
@@ -60,6 +68,11 @@ export default function DisplayComponent() {
                         <p> {key} </p><p> {revealedAnswers.includes(value.id) ? value.text : '. . . . . . . . . . .'} </p><p> {revealedAnswers.includes(value.id) ? value.votes : ' '} </p>
                     </div>
                 ))}
+            </div>
+            <div className={styles.scores}>
+                <p>Scores :</p>
+                <p>TLS: {scoreState.TLS}</p>
+                <p>SAL: {scoreState.SAL}</p>
             </div>
             <div className={styles.xd}>
 

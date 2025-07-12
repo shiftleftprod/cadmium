@@ -55,6 +55,20 @@ export default function RemoteComponent() {
                 {!startWarning && <button onClick={() => setStartWarning(true)}>Démarrer la partie</button>}
                 {startWarning && <button disabled={startDisabled} onClick={() => handleStartGame()}>{startDisabled ? 'Sur.e ? (4s)' : 'Démarrer'}</button>}
             </div>
+            <div className={styles.scores}>
+                <button onClick={() => sendMessage({ type: "ADD_SCORE", data: { uteam: "TLS", uamount: 1 } })}>TLS + 1</button>
+                <button onClick={() => sendMessage({ type: "REMOVE_SCORE", data: { dteam: "TLS", damount: 1 } })}>TLS - 1</button>
+                <br />
+                <button onClick={() => sendMessage({ type: "ADD_SCORE", data: { uteam: "TLS", uamount: 5 } })}>TLS + 5</button>
+                <button onClick={() => sendMessage({ type: "REMOVE_SCORE", data: { dteam: "TLS", damount: 5 } })}>TLS - 5</button>
+                <br /><br />
+                <button onClick={() => sendMessage({ type: "ADD_SCORE", data: { uteam: "SAL", uamount: 1 } })}>SAL + 1</button>
+                <button onClick={() => sendMessage({ type: "REMOVE_SCORE", data: { dteam: "SAL", damount: 1 } })}>SAL - 1</button>
+                <br />
+                <button onClick={() => sendMessage({ type: "ADD_SCORE", data: { uteam: "SAL", uamount: 5 } })}>SAL + 5</button>
+                <button onClick={() => sendMessage({ type: "REMOVE_SCORE", data: { dteam: "SAL", damount: 5 } })}>SAL - 5</button>
+            </div>
+            <br />
             <button onClick={() => sendMessage({ type: 'NEXT_QUESTION', data: {} })}>Question suivante</button>
             <p>Question {gameState.id}: {gameState.question}</p>
             <p>Réponses :</p>

@@ -5,3 +5,13 @@
 .start {
     margin: 20px;
 }
+
+.scores {
+    border: 1px dotted black;
+    padding: 10px;
+}
+
+.scores > * {
+    margin: 5px;
+    padding: 30px;
+}

@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 import express from "express";
 import { createServer } from "http";
-
+import styles from "./Remote.module.css";
 const app = express();
 const server = createServer(app);
 const wss = new WebSocketServer({ server });
@@ -12,7 +12,10 @@ let gameState = {
   currentQuestion: {},
   revealedAnswers: [],
   maxQuestions: gameData.questions.length,
-  teams: {},
+  teams: {
+    TLS: 0,
+    SAL: 0,
+  },
 };
 
 const clients = {
@@ -69,6 +72,31 @@ wss.on("connection", (ws) => {
         });
 
         break;
+
+      case "ADD_SCORE":
+        const { uteam, uamount } = message.data;
+        if (gameState.teams[uteam] !== undefined) {
+          gameState.teams[uteam] += uamount;
+          console.log(`Score mis à jour pour ${uteam}: +${uamount}`);
+          sendToDisplays({
+            type: "DISPLAY_SCORES",
+            data: gameState.teams,
+          });
+        }
+        break;
+
+      case "REMOVE_SCORE":
+        const { dteam, damount } = message.data;
+        if (gameState.teams[dteam] !== undefined) {
+          gameState.teams[dteam] -= damount;
+          console.log(`Score mis à jour pour ${dteam}: +${damount}`);
+          sendToDisplays({
+            type: "DISPLAY_SCORES",
+            data: gameState.teams,
+          });
+        }
+        break;
+
       case "NEXT_QUESTION":
         console.log("NEXT QUESTION");
         if (
