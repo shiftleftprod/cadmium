@@ -12,11 +12,11 @@ const gameData = {
       id: 2,
       question: "Qui est le combattant le plus facile a prendre en main ?",
       answers: {
-        1: { id: 1, text: "Lucina", votes: 0 },
-        2: { id: 2, text: "Kirby", votes: 0 },
-        3: { id: 3, text: "Aegis", votes: 0 },
-        4: { id: 4, text: "Mario", votes: 0 },
-        5: { id: 5, text: "Bowser", votes: 0 },
+        1: { id: 1, text: "Lucina", votes: 19 },
+        2: { id: 2, text: "Kirby", votes: 11 },
+        3: { id: 3, text: "Pit", votes: 7 },
+        4: { id: 4, text: "Aegis", votes: 6 },
+        5: { id: 5, text: "Mario", votes: 6 },
       },
     },
     {
@@ -34,21 +34,21 @@ const gameData = {
       id: 4,
       question: "Quel est le combattant que vous détestez le plus affronter ?",
       answers: {
-        1: { id: 1, text: "MinMin", votes: 0 },
-        2: { id: 2, text: "Kazuya", votes: 0 },
-        3: { id: 3, text: "Bayonetta", votes: 0 },
-        4: { id: 4, text: "Steve", votes: 0 },
+        1: { id: 1, text: "MinMin", votes: 9 },
+        2: { id: 2, text: "Kazuya", votes: 7 },
+        3: { id: 3, text: "Bayonetta", votes: 6 },
+        4: { id: 4, text: "Steve", votes: 5 },
       },
     },
     {
       id: 5,
       question: "Quel combattant faut il prendre si on a un style bourrin ?",
       answers: {
-        1: { id: 1, text: "Roy", votes: 0 },
-        2: { id: 2, text: "Little Mac", votes: 0 },
-        3: { id: 3, text: "Félinferno", votes: 0 },
-        4: { id: 4, text: "DK", votes: 0 },
-        5: { id: 4, text: "Bowser", votes: 0 },
+        1: { id: 1, text: "Roy", votes: 31 },
+        2: { id: 2, text: "Little Mac", votes: 9 },
+        3: { id: 3, text: "Félinferno", votes: 6 },
+        4: { id: 4, text: "DK", votes: 5 },
+        5: { id: 4, text: "Bowser", votes: 5 },
       },
     },
     {
@@ -88,12 +88,14 @@ const gameData = {
     },
     {
       id: 9,
-      question: "Quel personnage n'aurait pas dû être dans smash ?",
+      question:
+        "Quel combattant faut il jouer si j'ai un style plus pose et reflechi ?",
       answers: {
-        1: { id: 1, text: "Steve", votes: 20 },
-        2: { id: 2, text: "MinMin", votes: 7 },
-        3: { id: 3, text: "Sora", votes: 4 },
-        4: { id: 3, text: "Kazuya", votes: 3 },
+        1: { id: 1, text: "Pac Man", votes: 13 },
+        2: { id: 2, text: "Samus", votes: 8 },
+        3: { id: 3, text: "Wario", votes: 8 },
+        4: { id: 3, text: "Lucina", votes: 7 },
+        5: { id: 3, text: "Olimar", votes: 6 },
       },
     },
     {
@@ -134,9 +136,14 @@ const gameData = {
       question:
         "Citez-moi, pour chaque édition, qui a été le gagnant du Flamin'GOAT.",
       answers: {
-        1: { id: 1, text: "A remplir", votes: 0 },
-        2: { id: 2, text: "A remplir", votes: 0 },
-        3: { id: 3, text: "A remplir", votes: 0 },
+        1: { id: 1, text: "Eko", votes: 1 },
+        2: { id: 2, text: "Flynn", votes: 2 },
+        3: { id: 3, text: "Oxyzz", votes: 3 },
+        4: { id: 3, text: "Kajou", votes: 4 },
+        5: { id: 3, text: "Yas As1", votes: 5 },
+        6: { id: 3, text: "Eko", votes: 6 },
+        7: { id: 3, text: "fm", votes: 7 },
+        8: { id: 3, text: "PeW", votes: 8 },
       },
     },
     {
@@ -189,11 +196,11 @@ const gameData = {
       question:
         "Quels sont les joueurs ayant fait le plus de GAME aux différents Flamin'Goat ?",
       answers: {
-        1: { id: 1, text: "Yas As1", votes: 0 },
-        2: { id: 2, text: "Que_ni_ni", votes: 0 },
-        3: { id: 3, text: "Orik", votes: 0 },
-        4: { id: 3, text: "ZeroFK", votes: 0 },
-        5: { id: 3, text: "Goison", votes: 0 },
+        1: { id: 1, text: "Yas As1", votes: 173 },
+        2: { id: 2, text: "Que_ni_ni", votes: 169 },
+        3: { id: 3, text: "Orik", votes: 158 },
+        4: { id: 3, text: "ZeroFK", votes: 150 },
+        5: { id: 3, text: "Goison", votes: 140 },
       },
     },
     {
@@ -331,3 +338,4 @@ const gameData = {
 };
 
 export default gameData;
+
